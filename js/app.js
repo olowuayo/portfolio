@@ -1,15 +1,4 @@
-/* -----------------------------------------------
-/* How to use? : Check the GitHub README
-/* ----------------------------------------------- */
 
-/* To load a config file (particles.json) you need to host this demo (MAMP/WAMP/local)... */
-/*
-particlesJS.load('particles-js', 'particles.json', function() {
-  console.log('particles.js loaded - callback');
-});
-*/
-
-/* Otherwise just put the config content (json): */
 
 particlesJS('particles-js',
   
@@ -131,3 +120,52 @@ particlesJS('particles-js',
   }
 
 );
+
+
+let menu = document.querySelector('#menu-bars');
+let header = document.querySelector('header');
+
+menu.onclick = () =>{
+    menu.classList.toggle('fa-times');
+    header.classList.toggle('active');
+}
+
+window.onscroll = () =>{
+    menu.classList.remove('fa-times');
+    header.classList.remove('active');
+};
+
+var typed = new Typed('.typing-text', {
+    strings : ['web designer', 'graphic designer', '', 'ui/ux designer'],
+    loop : true,
+    typeSpeed : 150
+});
+
+VanillaTilt.init(document.querySelectorAll('.tilt'),{
+    max:25
+});
+
+var form = document.getElementById("my-form");
+    
+    async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("my-form-status");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+
+        status.classList.add("success");
+        status.innerHTML = "Thanks for reaching out, your message has been sent successfully! I will get back to you shortly.";
+        
+        form.reset();
+      }).catch(error => {
+        status.classList.add("error");
+        status.innerHTML = "Oops! Something went wrong, pls try again later";
+      });
+    }
+    form.addEventListener("submit", handleSubmit);
